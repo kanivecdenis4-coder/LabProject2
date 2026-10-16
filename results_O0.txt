@@ -1,0 +1,70 @@
+Variant 8: replace_if | build: Release (NDEBUG) | label: O0 | hardware threads: 12 | repeats: 7 (median)
+
+=== N = 100000 ===
+ [1-2] Library std::replace_if
+  no policy                        0.545 ms   OK
+  execution::seq                   0.547 ms   OK
+  execution::par                   0.382 ms   OK
+  execution::par_unseq             0.273 ms   OK
+  execution::unseq                 0.621 ms   OK
+ [3] Own parallel algorithm (K parts = K threads)
+  K           time, ms     speedup  check
+  1              0.574        0.99  OK
+  2              0.772        0.73  OK
+  3              0.849        0.67  OK
+  4              1.059        0.53  OK
+  6              1.801        0.31  OK
+  8              2.698        0.21  OK
+  12             5.729        0.10  OK
+  16             6.806        0.08  OK
+  24             8.649        0.07  OK
+  32             9.116        0.06  OK
+  48            15.542        0.04  OK
+  64            21.766        0.03  OK
+  >>> Best K = 1 (0.566 ms), hardware threads = 12, K / threads = 0.08
+
+=== N = 1000000 ===
+ [1-2] Library std::replace_if
+  no policy                        8.416 ms   OK
+  execution::seq                   6.127 ms   OK
+  execution::par                   0.994 ms   OK
+  execution::par_unseq             1.732 ms   OK
+  execution::unseq                 7.700 ms   OK
+ [3] Own parallel algorithm (K parts = K threads)
+  K           time, ms     speedup  check
+  1              5.832        1.00  OK
+  2              6.107        0.96  OK
+  3              3.863        1.51  OK
+  4              4.961        1.18  OK
+  6              4.146        1.41  OK
+  8              5.393        1.08  OK
+  12             6.772        0.86  OK
+  16             7.596        0.77  OK
+  24             9.111        0.64  OK
+  32            10.080        0.58  OK
+  48            13.666        0.43  OK
+  64            19.199        0.30  OK
+  >>> Best K = 3 (3.863 ms), hardware threads = 12, K / threads = 0.25
+
+=== N = 10000000 ===
+ [1-2] Library std::replace_if
+  no policy                       59.780 ms   OK
+  execution::seq                  61.630 ms   OK
+  execution::par                  16.422 ms   OK
+  execution::par_unseq            21.281 ms   OK
+  execution::unseq                66.307 ms   OK
+ [3] Own parallel algorithm (K parts = K threads)
+  K           time, ms     speedup  check
+  1             59.421        1.00  OK
+  2             31.998        1.86  OK
+  3             21.804        2.73  OK
+  4             19.366        3.07  OK
+  6             25.696        2.32  OK
+  8             20.825        2.86  OK
+  12            25.092        2.37  OK
+  16            26.518        2.24  OK
+  24            21.859        2.72  OK
+  32            32.020        1.86  OK
+  48            33.809        1.76  OK
+  64            31.620        1.88  OK
+  >>> Best K = 4 (19.366 ms), hardware threads = 12, K / threads = 0.33
